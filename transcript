@@ -14,17 +14,17 @@
 # //
 # do inverter.do
 # QuestaSim-64 vlog 2024.3_3 Compiler 2025.03 Mar 20 2025
-# Start time: 10:57:14 on Oct 01,2025
+# Start time: 13:17:15 on Oct 01,2025
 # vlog -reportprogress 300 inverter.sv inverter_tb.sv 
 # -- Compiling module inverter
 # -- Compiling module tb_inverter
 # 
 # Top level modules:
 # 	tb_inverter
-# End time: 10:57:14 on Oct 01,2025, Elapsed time: 0:00:00
+# End time: 13:17:15 on Oct 01,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -voptargs="+acc" work.tb_inverter 
-# Start time: 10:57:14 on Oct 01,2025
+# Start time: 13:17:15 on Oct 01,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
@@ -35,15 +35,21 @@
 # Loading work.inverter(fast)
 # .main_pane.list.interior.cs.body
 # .main_pane.wave.interior.cs.body.pw.wf
-# Time(ns) | a | y
-# -----------------
-# 10000     | 0 | 1
-# 20000     | 1 | 0
-# 30000     | 0 | 1
-# 40000     | 1 | 0
-# ** Note: $finish    : inverter_tb.sv(32)
-#    Time: 40 ns  Iteration: 0  Instance: /tb_inverter
+# Time | clk | a | y
+# ------------------
+#    0 |  0  | 0 | 1
+# 10000 |  1  | 0 | 1
+# 20000 |  0  | 1 | 0
+# 30000 |  1  | 1 | 0
+# 40000 |  0  | 0 | 1
+# 50000 |  1  | 0 | 1
+# 60000 |  0  | 1 | 0
+# 70000 |  1  | 1 | 0
+# 80000 |  0  | 0 | 1
+# 90000 |  1  | 0 | 1
+# ** Note: $finish    : inverter_tb.sv(36)
+#    Time: 100 ns  Iteration: 0  Instance: /tb_inverter
 # 1
-# Break in Module tb_inverter at inverter_tb.sv line 32
-# End time: 10:58:37 on Oct 01,2025, Elapsed time: 0:01:23
+# Break in Module tb_inverter at inverter_tb.sv line 36
+# End time: 13:18:32 on Oct 01,2025, Elapsed time: 0:01:17
 # Errors: 0, Warnings: 1
