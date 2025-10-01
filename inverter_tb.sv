@@ -1,35 +1,44 @@
-`timescale 1ns/1ps
+`timescale 1ns / 1ps
 
 module tb_inverter;
 
-    // Testbench signals
     logic a;
     logic y;
+    logic clk;
 
-    // Instantiate the inverter (Device Under Test)
+    // Instantiate DUT (device under test)
     inverter dut (
         .a(a),
         .y(y)
     );
 
-    // Generate stimulus
+    // 20 ns clock -> toggles every 10 ns
     initial begin
-        $display("Time(ns) | a | y");
-        $display("-----------------");
+        clk = 1'b0;
+        forever #10 clk = ~clk;
+    end
 
-        a = 0; #10;
-        $display("%4t     | %0b | %0b", $time, a, y);
+    // Stimulus process
+    initial begin
+        // Initialize inputs
+        a = 1'b0;
 
-        a = 1; #10;
-        $display("%4t     | %0b | %0b", $time, a, y);
+        // Display header
+        $display("Time | clk | a | y");
+        $display("------------------");
 
-        a = 0; #10;
-        $display("%4t     | %0b | %0b", $time, a, y);
+        // Apply test cases
+        #20 a = 1'b1;
+        #20 a = 1'b0;
+        #20 a = 1'b1;
+        #20 a = 1'b0;
 
-        a = 1; #10;
-        $display("%4t     | %0b | %0b", $time, a, y);
+        #20 $finish;
+    end
 
-        $finish;
+    // Monitor signals
+    always @(a or y or clk) begin
+        $display("%4t |  %0b  | %0b | %0b", $time, clk, a, y);
     end
 
 endmodule
