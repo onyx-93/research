@@ -1,0 +1,77 @@
+m255
+K4
+z2
+!s12c _opt
+Z0 !s99 nomlopt
+!s11f vlog 2024.3_3 2025.03, Mar 20 2025
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 d/home/ddubon/research/project-mode
+T_opt
+Z2 !s110 1759432985
+VEX83DZHfUQeXP8`eFk3:b0
+04 11 4 work tb_inverter fast 0
+=1-000ae431a4f1-68ded119-7a37d-20a31b
+R0
+!s12f OEM100
+!s12b OEM100
+!s124 OEM100
+!s135 nogc
+o-quiet -auto_acc_if_foreign -work work +acc
+Z3 tCvgOpt 0
+n@_opt
+OL;O;2024.3_3;79
+vinverter
+Z4 2inverter.sv|inverter_tb.sv
+Z5 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+R2
+!i10b 1
+!s100 P:<J]UG1flQQdgj=giVbX1
+I8=f7`ZHdoP[Q;Y[<5FA6[3
+S1
+R1
+w1759334113
+8inverter.sv
+Finverter.sv
+!i122 0
+L0 1 6
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 OL;L;2024.3_3;79
+r1
+!s85 0
+31
+Z8 !s108 1759432985.000000
+Z9 !s107 inverter_tb.sv|inverter.sv|
+Z10 !s90 -reportprogress|300|inverter.sv|inverter_tb.sv|
+!i113 0
+Z11 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R3
+vtb_inverter
+R4
+R5
+R2
+!i10b 1
+!s100 hU=E3KWSYBDXO76KAedE33
+I>EkgTYln>3GXhaYWk_W@g0
+S1
+R1
+w1759342381
+8inverter_tb.sv
+Finverter_tb.sv
+!i122 0
+L0 3 42
+R6
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R3
