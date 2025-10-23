@@ -1,0 +1,38 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Tue Oct 21 14:55:48 2025
+# Process ID         : 7103
+# Current directory  : /home/ddubon/research/project-mode
+# Command line       : vivado
+# Log file           : /home/ddubon/research/project-mode/vivado.log
+# Journal file       : /home/ddubon/research/project-mode/vivado.jou
+# Running On         : sharla
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.3 LTS
+# Processor Detail   : AMD Ryzen Threadripper PRO 5965WX 24-Cores
+# CPU Frequency      : 2398.687 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 48
+# Host memory        : 134935 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 143525 MB
+# Available Virtual  : 140201 MB
+#-----------------------------------------------------------
+start_gui
+open_project /home/ddubon/research/project-mode/Inverter/Inverter.xpr
+update_compile_order -fileset sources_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag
+disconnect_hw_server localhost:3121
+connect_hw_server -allow_non_jtag

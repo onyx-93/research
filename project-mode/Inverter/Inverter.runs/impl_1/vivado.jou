@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Tue Oct 21 15:24:45 2025
+# Process ID         : 6221
+# Current directory  : /home/ddubon/research/project-mode/Inverter/Inverter.runs/impl_1
+# Command line       : vivado -log top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
+# Log file           : /home/ddubon/research/project-mode/Inverter/Inverter.runs/impl_1/top.vdi
+# Journal file       : /home/ddubon/research/project-mode/Inverter/Inverter.runs/impl_1/vivado.jou
+# Running On         : sharla
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.3 LTS
+# Processor Detail   : AMD Ryzen Threadripper PRO 5965WX 24-Cores
+# CPU Frequency      : 3140.878 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 48
+# Host memory        : 134935 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 143525 MB
+# Available Virtual  : 139066 MB
+#-----------------------------------------------------------
+source top.tcl -notrace
