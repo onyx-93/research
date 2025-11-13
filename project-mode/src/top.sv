@@ -4,11 +4,17 @@
 //============================================================
 
 module top (
+    input  logic clk100mhz,
     input  logic btn,   // Push button input
     output logic led    // LED output
 );
 
+    (* mark_debug="true" *) logic CLK;
+    assign CLK = clk100mhz;
     // LED is ON when button is NOT pressed
-    assign led = ~btn;
+    // instantiate dut
+    inverter dut (btn, led);
 
 endmodule
+
+

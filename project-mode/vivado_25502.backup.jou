@@ -3,8 +3,8 @@
 # SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Thu Nov  6 15:35:34 2025
-# Process ID         : 33622
+# Start of session at: Thu Nov  6 15:09:43 2025
+# Process ID         : 25502
 # Current directory  : /home/ddubon/research/project-mode
 # Command line       : vivado -mode tcl -source project.tcl
 # Log file           : /home/ddubon/research/project-mode/vivado.log
@@ -13,27 +13,16 @@
 # Platform           : Ubuntu
 # Operating System   : Ubuntu 24.04.3 LTS
 # Processor Detail   : AMD Ryzen Threadripper PRO 5965WX 24-Cores
-# CPU Frequency      : 2771.394 MHz
+# CPU Frequency      : 1432.000 MHz
 # CPU Physical cores : 24
 # CPU Logical cores  : 48
 # Host memory        : 134935 MB
 # Swap memory        : 8589 MB
 # Total Virtual      : 143525 MB
-# Available Virtual  : 138776 MB
+# Available Virtual  : 139575 MB
 #-----------------------------------------------------------
 source project.tcl
-get_nets CLK
-get_nets {CLK}
-get_ports
-get_debug_ports
-connect_debug_port dbg_hub/clk [get_nets CLK]
-connect_debug_port u_ila_0/clk [get_nets CLK]
-launch_runs impl_1 -to_step write_bitstream
-connect_debug_port u_ila_0/probe0 [get_ports {btn}]
-connect_debug_port u_ila_0/probe1 [get_ports {led}]
-launch_runs impl_1 -to_step write_bitstream
-connect_debug_port u_ila_0/probe0 [get_ports {btn}]
-launch_runs impl_1 -to_step write_bitstream
-get_debug_ports
-get_debug_cores
-get_debug_ports
+report_debug_core
+get_ports clk10mhz
+get_ports led
+get_ports btn
