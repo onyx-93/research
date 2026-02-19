@@ -3,7 +3,7 @@
 # Vivado 2025.1 -- Arty A7-100T inverter project with ILA debug
 # ============================================================
 
-set proj_name "Inverter"
+set proj_name "Tail Lights"
 set proj_dir  "./$proj_name"
 
 # Arty A7-100T part
@@ -13,7 +13,7 @@ set part "xc7a100tcsg324-1"
 set top "top"
 
 # Folder containing source files
-set src_dir "./src"
+set src_dir "./src1"
 
 # Path to main constraints file
 set xdc "./pin_setting.xdc"
@@ -50,6 +50,10 @@ if {[file exists $xdc]} {
 # ------------------------------------------------------------
 set_property top $top [get_filesets sources_1]
 update_compile_order -fileset sources_1
+
+# Reset runs here — this cleans old ILA / debug state before we apply the new ILA XDC
+reset_run synth_1
+reset_run impl_1   ;# safe even if impl_1 doesn't exist yet
 
 # Run synthesis
 launch_runs synth_1 -jobs 4
