@@ -30,43 +30,32 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module top (
-    input  logic       clk100mhz,
-    input  logic [3:0] btn,
-    input  logic [1:0] sw,
+    input  logic       clk100mhz,   // 100 MHz from board
+    input  logic [3:0] btn,         // btn[3] = reset
+    input  logic [1:0] sw,          // sw[1]=left (a), sw[0]=right (b)
     output logic [3:0] led
 );
 
-    // Already have this for clock — good
-    (* keep = "true" *) logic clk_internal;
-    assign clk_internal = clk100mhz;
-
-    // Add these to make button & switch signals visible internally
-    (* keep = "true" *) logic reset;
-    (* keep = "true" *) logic left;
-    (* keep = "true" *) logic right;
-    (* keep = "true" *) logic [3:0] led_internal;
+    logic clk_en;
+    logic reset;
 
     assign reset = btn[3];
-    assign left  = sw[1];
-    assign right = sw[0];
-    assign led_internal   = led;           // output register copy
 
-    // Use the internal versions in the instances
+    // Clock divider - slow enable for FSM
     clk_div u_div (
-        .clk(clk100mhz),
-        .rst(reset),     // ← changed
+        .clk   (clk100mhz),
+        .rst   (reset),
         .clk_en(clk_en)
     );
 
+    // FSM - only advances when clk_en is high
     FSM u_fsm (
-        .clk(clk100mhz),
-        .reset(reset),   // ← changed
-        .a(left),        // ← changed
-        .b(right),       // ← changed
-        .clk_en(clk_en),
-        .y(led)
+        .clk   (clk100mhz),   // still use fast clock for flip-flops
+        .reset (reset),
+        .a     (sw[1]),
+        .b     (sw[0]),
+        .clk_en (clk_en),     // ← must be connected
+        .y     (led)
     );
 
-    // Optional: if you want FSM state visible too
-    // (you'll need to expose it from FSM module or use mark_debug later)
 endmodule

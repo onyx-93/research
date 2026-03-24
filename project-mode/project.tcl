@@ -52,21 +52,41 @@ set_property top $top [get_filesets sources_1]
 update_compile_order -fileset sources_1
 
 # Reset runs here — this cleans old ILA / debug state before we apply the new ILA XDC
-reset_run synth_1
-reset_run impl_1   ;# safe even if impl_1 doesn't exist yet
+#reset_run synth_1
+#reset_run impl_1   ;# safe even if impl_1 doesn't exist yet
 
 # Run synthesis
 launch_runs synth_1 -jobs 4
 wait_on_run synth_1
 open_run synth_1
 
+# Clean stale ILA core and reset runs before applying new debug config
+#delete_debug_core [get_debug_cores u_ila_0 -quiet]
+#reset_run synth_1
+#reset_run impl_1
+
+# Aggressive clean-up of any stale debug cores
+# and reset both runs to force fresh processing
+# ────────────────────────────────────────────────
+# Delete any existing ILA core (ignore error if none exists)
+#catch { delete_debug_core u_ila_0 }
+# Reset both runs to discard any cached debug wiring
+#reset_run synth_1
+#reset_run impl_1
+
+# Re-run synthesis to apply clean state
+#launch_runs synth_1 -jobs 4
+#wait_on_run synth_1
+#open_run synth_1
+# ────────────────────────────────────────────────
+
 # Add ILA constraints file if it exists
-if {[file exists $ila_xdc]} {
-    source $ila_xdc
-    puts "INFO: Sourced ILA constraints from $ila_xdc"
-} else {
-    puts "WARNING: No ILA constraints found at $ila_xdc"
-}
+#if {[file exists $ila_xdc]} {
+#    source $ila_xdc
+#    puts "INFO: Sourced ILA constraints from $ila_xdc"
+#} else {
+#    puts "WARNING: No ILA constraints found at $ila_xdc"
+#}
 
 # Run implementation through bitstream generation
 launch_runs impl_1 -to_step write_bitstream

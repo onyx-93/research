@@ -1,51 +1,54 @@
-//======================================================
-// Moore FSM for Arty A7 (4-LED Output)
-//======================================================
-
 module FSM (
     input  logic       clk,
     input  logic       reset,
     input  logic       a,
     input  logic       b,
-    input  logic       clk_en,
+    input  logic       clk_en,     // ← ADD THIS LINE
     output logic [3:0] y
 );
 
-    // State definition
-    typedef enum logic [3:0] {
-        S0, S1, S2, S3,
-        S4, S5, S6, S7,
-        S8, S9
+    typedef enum logic [2:0] {
+        S0, S1, S2, S3, S4, S5, S6
     } statetype;
 
-    // === Add mark_debug here ===
-    (* mark_debug = "true" *) statetype state, nextstate;
+    statetype state, nextstate;
 
-    // Optional: also mark the inputs if you want to see them clearly inside ILA
-    (* mark_debug = "true" *) logic a_int, b_int;
-    assign a_int = a;
-    assign b_int = b;
-
-    // State register
-    always_ff @(posedge clk) begin
+    // State Register - only updates on slow clk_en
+    always_ff @(posedge clk, posedge reset) begin
         if (reset)
             state <= S0;
-        else if (clk_en)
+        else if (clk_en)          
             state <= nextstate;
     end
 
-    // Next-state + output logic
+    // Next-state and Output logic (use blocking assignments in always_comb)
     always_comb begin
         nextstate = state;
         y = 4'b0000;
 
         case (state)
-            // ... (your existing case statements remain unchanged)
+            S0: begin
+                y <= 4'b0000;
+                if (a && b)      nextstate <= S5;
+                else if (b)      nextstate <= S3;
+                else if (a)      nextstate <= S1;
+                else             nextstate <= S0;
+            end
+
+            S1: begin y <= 4'b01_00; nextstate <= S2; end
+            S2: begin y <= 4'b11_00; nextstate <= S0; end
+
+            S3: begin y <= 4'b00_10; nextstate <= S4; end
+            S4: begin y <= 4'b00_11; nextstate <= S0; end
+
+            S5: begin y <= 4'b01_10; nextstate <= S6; end
+            S6: begin y <= 4'b11_11; nextstate <= S0; end
+
+            default: begin
+                y <= 4'b0000;
+                nextstate <= S0;
+            end
         endcase
     end
-
-    // Optional: mark the output register too
-    (* mark_debug = "true" *) logic [3:0] y_reg;
-    assign y_reg = y;
 
 endmodule

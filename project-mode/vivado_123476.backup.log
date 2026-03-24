@@ -1,0 +1,99 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Tue Mar 24 14:29:01 2026
+# Process ID         : 123476
+# Current directory  : /home/ddubon/research/project-mode
+# Command line       : vivado -mode tcl -source project.tcl
+# Log file           : /home/ddubon/research/project-mode/vivado.log
+# Journal file       : /home/ddubon/research/project-mode/vivado.jou
+# Running On         : sharla
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.4 LTS
+# Processor Detail   : AMD Ryzen Threadripper PRO 5965WX 24-Cores
+# CPU Frequency      : 1432.261 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 48
+# Host memory        : 134934 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 143524 MB
+# Available Virtual  : 137044 MB
+#-----------------------------------------------------------
+source project.tcl
+# set proj_name "Tail Lights"
+# set proj_dir  "./$proj_name"
+# set part "xc7a100tcsg324-1"
+# set top "top"
+# set src_dir "./src1"
+# set xdc "./pin_setting.xdc"
+# set ila_xdc "./small-debug.xdc"
+# if {[file exists $proj_dir]} {
+#     file delete -force $proj_dir
+# }
+# create_project $proj_name $proj_dir -part $part -force
+# add_files [glob -nocomplain -directory $src_dir *.sv]
+# if {[file exists $xdc]} {
+#     add_files -fileset constrs_1 $xdc
+#     read_xdc $xdc
+# } else {
+#     puts "WARNING: No XDC found at $xdc"
+# }
+WARNING: [filemgmt 56-128] File '/home/ddubon/research/project-mode/pin_setting.xdc' is already in the project and will not be added again
+# set_property top $top [get_filesets sources_1]
+# update_compile_order -fileset sources_1
+# launch_runs synth_1 -jobs 4
+WARNING: [Vivado 12-7122] Auto Incremental Compile:: No reference checkpoint was found in run synth_1. Auto-incremental flow will not be run, the standard flow will be run instead.
+[Tue Mar 24 14:29:06 2026] Launched synth_1...
+Run output will be captured here: /home/ddubon/research/project-mode/Tail Lights/Tail Lights.runs/synth_1/runme.log
+# wait_on_run synth_1
+[Tue Mar 24 14:29:06 2026] Waiting for synth_1 to finish...
+
+*** Running vivado
+    with args -log top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
+
+
+****** Vivado v2025.1 (64-bit)
+  **** SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Tue Mar 24 14:29:08 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source top.tcl -notrace
+Command: synth_design -top top -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 123817
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2226.602 ; gain = 438.742 ; free physical = 108860 ; free virtual = 128646
+---------------------------------------------------------------------------------
+ERROR: [Synth 8-36] 'clk_en' is not declared [/home/ddubon/research/project-mode/src1/fsm.sv:19]
+INFO: [Synth 8-10285] module 'FSM' is ignored due to previous errors [/home/ddubon/research/project-mode/src1/fsm.sv:53]
+INFO: [Synth 8-9084] Verilog file '/home/ddubon/research/project-mode/src1/fsm.sv' ignored due to errors
+ERROR: [Synth 8-12188] Failed to read verilog '/home/ddubon/research/project-mode/src1/fsm.sv'
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2299.539 ; gain = 511.680 ; free physical = 108764 ; free virtual = 128550
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+INFO: [Common 17-83] Releasing license: Synthesis
+8 Infos, 0 Warnings, 0 Critical Warnings and 3 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+INFO: [Common 17-206] Exiting Vivado at Tue Mar 24 14:29:17 2026...
+[Tue Mar 24 14:29:37 2026] synth_1 finished
+ERROR: [Vivado 12-13638] Failed runs(s) : 'synth_1'
+wait_on_runs: Time (s): cpu = 00:00:17 ; elapsed = 00:00:31 . Memory (MB): peak = 1639.711 ; gain = 0.000 ; free physical = 110391 ; free virtual = 130175
+ERROR: [Common 17-39] 'wait_on_runs' failed due to earlier errors.
+
+    while executing
+"wait_on_run synth_1"
+    (file "project.tcl" line 60)
+exit
+INFO: [Common 17-206] Exiting Vivado at Tue Mar 24 14:48:28 2026...

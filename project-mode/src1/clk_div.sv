@@ -1,6 +1,5 @@
-//======================================================
-// Clock Enable Generator (ILA-Friendly)
-//======================================================
+// Generates a slow enable pulse approximately every 0.335 seconds
+// at 100 MHz clock (good visible speed for LEDs)
 
 module clk_div (
     input  logic clk,
@@ -12,12 +11,11 @@ module clk_div (
 
     always_ff @(posedge clk) begin
         if (rst)
-            count <= 0;
+            count <= 25'd0;
         else
             count <= count + 1;
     end
 
-    // === Mark this signal ===
-    (* mark_debug = "true" *) assign clk_en = (count == 25'h1FFFFFF);
+    assign clk_en = (count == 25'h1FFFFFF); // 33,554,431 → ~0.335 sec at 100 MHz
 
 endmodule
