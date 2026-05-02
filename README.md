@@ -1,60 +1,24 @@
-# My Research
+# Arty A7 FPGA Implementation
 
+This repository contains a complete FPGA implementation of a **Tail Lights Turn Signal Controller** based on the classic 1965 Ford Thunderbird sequential turn signals. The project was developed for the Arty A7-100T board.
 
-# project_build.tcl
-# Vivado 2025.1 -- Arty A7-100T inverter project
+## Project Goal
 
-set proj_name "Inverter"
-set proj_dir  "./$proj_name"
+The main objective of this lab was to:
 
-# Arty A7-100T part
-set part "xc7a100tcsg324-1"
+- Design and implement a **sequential logic circuit** using a **Finite State Machine (FSM)** in SystemVerilog.
+- Use a **clock divider** to generate a visible slow clock enable signal.
+- Synthesize the design for the **Digilent Arty A7-100T** FPGA board.
+- Fully automate the build process to generate a bitstream **using only a TCL script** in Vivado.
 
-# Top-level module
-set top "top"
+---
 
-# Folder containing source files
-set src_dir "./src"
+## Features
 
-# Path to constraints file
-set xdc "./pin_setting.xdc"
-
-# Read constraint into the project
-read_xdc $xdc
-
-
-# Clean up existing project if it exists
-if {[file exists $proj_dir]} {
-    file delete -force $proj_dir
-}
-
-# Create project
-create_project $proj_name $proj_dir -part $part -force
-
-# Add SystemVerilog source files
-add_files [glob -nocomplain -directory $src_dir *.sv]
-
-# Add constraints file
-if {[file exists $xdc]} {
-    add_files -fileset constrs_1 $xdc
-} else {
-    puts "WARNING: No XDC found at $xdc"
-}
-
-# Set the top-level module
-set_property top $top [get_filesets sources_1]
-
-# Update compile order
-update_compile_order -fileset sources_1
-
-# Run synthesis
-launch_runs synth_1 -jobs 4
-wait_on_run synth_1
-
-# Run implementation through bitstream generation
-launch_runs impl_1 -to_step write_bitstream
-wait_on_run impl_1
-
-# Export bitstream
-set bitfile "$proj_dir/${proj_name}.runs/impl_1/${top}.bit"
-puts "Build complete! Bitstream at: $bitfile"
+- **Sequential Turn Signal FSM** with 7 states
+- **Slow clock generation** (~0.335 seconds per state transition) from 100 MHz board clock
+- Supports **Left turn**, **Right turn**, and **Hazard** (both) patterns
+- Automatic sequence repetition
+- Clean reset functionality
+- ILA debug core ready for waveform analysis
+- Fully scripted build flow (no GUI required)
